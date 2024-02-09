@@ -1,0 +1,217 @@
+
+<mujoco model="abb_irb6640_185_280">
+    <compiler angle="degree" inertiafromgeom="true" texturedir="/home/roboticme/disassembly_simulation/MuJoCo_simulation/mujoco_3.0/model/abb_irb_6640/assets/textures" meshdir="/home/roboticme/disassembly_simulation/MuJoCo_simulation/mujoco_3.0/model/abb_irb_6640/assets/meshes/visual/"/>
+    <default>
+        <site rgba="0.8 0.6 0.7 0.3" type="ellipsoid" group="3"/>
+        <geom contype='1' conaffinity='1' condim='4'  margin="1e-3" solref=".01 1" solimp=".99 .99 .01" />
+        <joint armature="0.01" damping=".1"/>
+    </default>
+    <option timestep="0.005" iterations="50" tolerance="1e-10" solver="Newton" jacobian="dense" cone="pyramidal" impratio="10" gravity="0 0 -9.81"/>
+    <size nconmax="500" njmax="3000" nstack="10000"/>    
+    <!--Visuals-->
+    <visual>
+        <map fogstart="3" fogend="5" znear="0.05"/>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <quality shadowsize="2048"/>
+        <scale framelength="0.1" framewidth="0.005" contactwidth="0.1" contactheight="0.005" forcewidth="0.01"/>
+    </visual>
+    <!--Assets-->
+    <asset>
+        <!--Meshes-->
+        <!-- Define mesh names and files here -->
+        <!-- Example: <mesh name="base_link" file="base_link.stl"/> -->
+        <mesh name="base_link"      file="base_link.stl"/>
+        <mesh name="link_1"         file="link_1.stl"   />
+        <mesh name="link_2"         file="link_2.stl"   />
+        <mesh name="link_3"         file="link_3.stl"   />
+        <mesh name="link_4"         file="link_4.stl"   />
+        <mesh name="link_5"         file="link_5.stl"   />
+        <mesh name="link_6"         file="link_6.stl"   />
+        <mesh name="cylinder_link"  file="cylinder_link.stl"/>
+        <mesh name="piston_link"    file="piston_link.stl" />
+        <mesh name="abbrobot"       file="abb.stl" />
+        <mesh name="base_link_visual"      file="base_link_visual.stl"/>
+        <mesh name="link_1_visual"         file="link_1_visual.stl"   />
+        <mesh name="link_2_visual"         file="link_2_visual.stl"   />
+        <mesh name="link_3_visual"         file="link_3_visual.stl"   />
+        <mesh name="link_4_visual"         file="link_4_visual.stl"   />
+        <mesh name="link_5_visual"         file="link_5_visual.stl"   />
+        <mesh name="link_6_visual"         file="link_6_visual.stl"   />
+        <mesh name="cylinder_link_visual"  file="cylinder_link_visual.stl"/>
+        <mesh name="piston_link_visual"    file="piston_link_visual.stl" />
+        <mesh name="workobject"       file="mesh_10_scaled.stl" />
+        <mesh name="tool_changer"       file="Tool changer_Assembly_scaled.stl" />
+        <mesh name="screw_driver"       file="Weber_SEVP30_40020267_scaled.stl" />
+        <mesh name="screw_driver_tool"       file="Weber_Tx10_40020270_scaled.stl" />
+        <mesh name="torx40_screw"       file="torx40_screw.stl" />
+        <!--mesh name="screw_driver_tool"       file="Weber_Ph2_40020278_scaled.stl" /-->
+        <!--Textures-->
+        <texture name="sky_tex" type="skybox" builtin="gradient" width="100" height="100" rgb1="1 1 1" rgb2="0.3 0.3 0.8" />
+        <texture name="floor_tex" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
+        <texture name="wood" type="cube" file="wood2.png"/>
+        <texture name="table_black_matte" type="cube" file="black_matte.png"/>
+        <texture name="metal" type="2d" builtin="flat" height="32" width="32"/>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <!--Materials-->
+        <!-- Define materials here -->
+        <!-- Example: <material name='base_mat' texture="metal" specular="0.75" shininess="0.5" reflectance="0.3" rgba="0.9647 0.4706 0.1569 1"/> -->
+        <material name='floor_mat' texture="floor_tex" shininess="0.8" texrepeat="10 10" specular="0.7"  reflectance="0.5" />
+        <material name="abb_orange" texture="metal" specular="0.75" shininess="0.5" reflectance="0.3" rgba="0.9647 0.4706 0.1569 1"/>
+        <material name="abb_white" texture="metal" specular="0.75" shininess="0.5" reflectance="0.3" rgba="0.9254 0.9254 0.909 1"/>
+        <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+        <material name="table_material" texture="table_black_matte" />
+        <material name="battery_material" texture="metal" specular="0.75" shininess="0.5" reflectance="0.3" rgba="0.6627 0.6627 0.6627 1"/>
+        <material name="tool_holder_material" texture="metal" specular="0.75" shininess="0.5" reflectance="0.3" rgba="0.07843137 0.07843137 0.07843137 0.8"/>
+        <material name="screw_driver_material" texture="metal" specular="0.75" shininess="0.5" reflectance="0.3" rgba="0.50196078 0.50196078 0.50196078 0.8"/>
+        <material name="screw_drivertool_material" texture="metal" specular="0.75" shininess="0.5" reflectance="0.3" rgba="0.5843137 0.7843137 0.96696078 0.9"/>
+    </asset>
+    <!--Contacts-->
+    <contact>
+        <!-- Define contact exclusions here -->
+        <!-- Example: <exclude body1="base_link" body2="link_1"/> -->
+        <exclude body1="base_link" body2="link_1"/>
+        <exclude body1="link_1" body2="link_2"/>
+        <exclude body1="link_2" body2="link_3"/>
+        <exclude body1="link_3" body2="link_4"/>
+        <exclude body1="link_4" body2="link_5"/>
+        <exclude body1="link_5" body2="link_6"/>
+        <exclude body1="link_6" body2="tool_changer"/>
+        <exclude body1="link_1" body2="cylinder_link"/>
+        <exclude body1="link_2" body2="piston_link"/>
+    </contact>
+    <!--MODEL DESCRIPTION-->
+    <worldbody>
+        <!--Lighting parameters-->
+        <light name="light1" mode="targetbody" target="base_link" directional="true" pos="8 -5 6" />
+        <light name="light2" mode="targetbody" target="workobject" directional="true" pos="8 5 6" />
+    
+        <!--Floor Property-->
+        <geom name="floor" pos="0 0 0" size="0 0 .25" type="plane" material="matplane" condim="3"/>
+        <body name="table"/>
+            <geom size="2.0 2.8 0.85" pos="3.1 0 0" type="box" material="table_material"/>
+        <body/>
+        <body name="workobject"/>
+            <geom pos="1.8 0 1" euler="0 0 0" type="mesh" mesh="workobject" material="battery_material"/>
+            <!--geom type="box" pos="1.8 0 1" size="0.39 0.4 0.18" rgba="0.7 0.7 0.7 1" group="1"/!-->
+        <body/>
+        <body name="screw"/>
+            <!--top screws-->
+            <geom pos="2.156 -0.03 1.147" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <!--center screws right to left-->
+            <geom pos="1.906 -0.222 1.153" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.904 -0.138 1.152" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.902 -0.043 1.152" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.902 0.046 1.152" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.902 0.142 1.152" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.90 0.23 1.153" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <!--left screws-->
+            <geom pos="1.841 0.317 1.145" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.765 0.317 1.145" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.689 0.317 1.145" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <!--right screws-->
+            <geom pos="1.855 -0.314 1.145" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.779 -0.314 1.145" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+            <geom pos="1.703 -0.314 1.145" euler="0 90 0" type="mesh" mesh="torx40_screw" material="abb_orange"/>
+        <body/>
+        <!-- Define robot links and joints here -->
+        <!-- Example: <body name="base_link"> ... </body> -->
+        <body name="base_link" pos="0 0 0">
+            <!--inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="50" diaginertia="0.0072 0.00443333 0.00443333" /-->
+            <!--geom type="mesh"  mesh="base_link" material="abb_white" group="1"/!-->
+            <geom type="mesh"  mesh="base_link_visual" material="abb_orange" group="2"/>
+            <!--geom type="mesh"  mesh="base_link_visual" material="abb_orange"/-->
+            <body name="link_1" pos="0 0 0.780">
+                <!--inertial pos="0 0 0" mass="20" diaginertia="0.0102675 0.0102675 0.00666" /-->
+                <!--geom type="mesh"  mesh="link_1" material="abb_white" group="1"/!-->
+                <geom type="mesh"  mesh="link_1_visual" material="abb_orange" group="2"/>
+                <joint name="joint_1" type="hinge" axis="0 0 1" limited="true" range="-170 170" damping="0.1" armature="0.01"/>
+                <body name="cylinder_link" pos="-0.3647 0 -0.1455">
+                    <!-- Define collision and visual geometries for cylinder_link -->
+                    <!--geom type="mesh"  mesh="cylinder_link" material="abb_white" group="1"/!-->
+                    <geom type="mesh"  mesh="cylinder_link_visual" material="abb_orange" group="2"/>
+                    <!--joint name="joint_cylinder" type="hinge" axis="0 1 0" limited="true" range="-170 170" damping="0.1" armature="0.01"/--> 
+                </body>
+                <body name="link_2" pos="0.320 0 0">
+                    <!--inertial pos="0 0 0.28" mass="20" diaginertia="0.226891 0.226891 0.0151074" /-->
+                    <!--geom type="mesh"  mesh="link_2" material="abb_white" group="1"/!-->
+                    <geom type="mesh"  mesh="link_2_visual" material="abb_orange" group="2"/>
+                    <joint name="joint_2" type="hinge" axis="0 1 0" limited="true" range="-65 85" damping="0.1" armature="0.01"/>
+                    <body name="piston_link" pos="-0.22 0 -0.0672">
+                        <!-- Define collision and visual geometries for piston_link -->
+                        <geom type="mesh"  mesh="piston_link" material="battery_material" group="1"/>
+                        <geom type="mesh"  mesh="piston_link_visual" material="battery_material" group="2"/>
+                        <!--joint name="joint_piston" type="hinge" axis="0 1 0" limited="true" range="-17.5 17.5" damping="0.1" armature="0.01"/--> 
+                    </body>   
+                    <body name="link_3" pos="0 0 1.075">
+                        <!--inertial pos="0 0 0.25" mass="20" diaginertia="0.0494433 0.0494433 0.004095" -->
+                        <!--geom type="mesh"  mesh="link_3" material="abb_white" group="1"/!-->
+                        <geom type="mesh"  mesh="link_3_visual" material="abb_orange" group="2"/>
+                        <joint name="joint_3" type="hinge" axis="0 1 0" limited="true" range="-180 70" damping="0.1" armature="0.01"/>                
+                        <body name="link_4" pos="0 0 0.2">
+                            <!--inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="20" diaginertia="0.21942 0.111173 0.111173" /-->
+                            <!--geom type="mesh"  mesh="link_4" material="abb_white" group="1"/!-->
+                            <geom type="mesh"  mesh="link_4_visual" material="abb_orange" group="2"/>
+                            <joint name="joint_4" type="hinge" axis="1 0 0" limited="true" range="-300 300" damping="0.1" armature="0.01"/>                      
+                            <body name="link_5" pos="1.392 0 0">
+                                <!--inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="20" diaginertia="0.21942 0.111173 0.111173" /-->
+                                <!--geom type="mesh"  mesh="link_5" material="abb_white" group="1"/!-->
+                                <geom type="mesh"  mesh="link_5_visual" material="abb_orange" group="2"/>
+                                <joint name="joint_5" type="hinge" axis="0 1 0" limited="true" range="-120 120" damping="0.1" armature="0.01"/>
+                                <body name="link_6" pos="0.2 0 0">
+                                    <!--inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="20" diaginertia="0.033822 0.0171365 0.0171365" /-->
+                                    <!--geom type="mesh"  mesh="link_6" material="abb_white" group="1"/!-->
+                                    <geom type="mesh"  mesh="link_6_visual" material="abb_orange" group="2"/>
+                                    <site name="6th_joint" size="0.6" pos="0 0 0"/>
+                                    <joint name="joint_6" type="hinge" axis="1 0 0" limited="true" range="-360 360" damping="0.1" armature="0.01"/>
+                                    <body name="tool_changer" pos="0.056 0 0" >
+                                        <geom type="mesh" euler="0 0 90" mesh="tool_changer" material="tool_holder_material" group="2"/>
+                                        <!--geom type="box" pos="-0.01 0 0" size="0.05 0.1 0.11" rgba="0.7 0.7 0.7 1" group="1"/!-->
+                                        <body name="screw_driver" pos="0.115 0 -0.04" >
+                                        	<geom type="mesh" euler="-90 0 -90" mesh="screw_driver" material="screw_driver_material" group="2"/>
+                                            <!--geom type="box" pos="0.01 0.015 0.08" size="0.09 0.053 0.17" rgba="0.7 0.7 0.7 1" group="1"/!-->
+		                                <body name="screw_driver_tool" pos="0 0 -0.08" >
+		                                	<geom name="screw_tool" type="mesh" euler="-90 0 -90" mesh="screw_driver_tool" material="screw_drivertool_material" group="2"/>
+                                            <!--geom type="box" pos="0 0 0" size="0.0225 0.0225 0.09" rgba="0.7 0.7 0.7 1" group="1"/!-->
+                                            <joint name="joint_screwdriver_tool" type="hinge" axis="0 0 1" limited="true" range="-12000000 12000000" damping="0.1" armature="0.01"/>
+                                            <site name="end_tip" size="0.6" pos="0.0 0 0"/>
+                                            
+                                            <site name="plane_contact" type="box" size="0.1 0.1" rgba="0 0 1 0.3"/>
+                                    		</body>
+                                    	</body>   
+                                </body> 
+                            </body> 
+                        </body> 
+                    </body> 
+                </body>   
+            </body>
+        </body>                   
+	</body>
+    </worldbody>
+   
+    <equality>
+        <weld body1="piston_link" body2="cylinder_link" relpose="0 1 0 0 0 0 0" />
+    </equality>
+
+    <sensor>
+        <force site="plane_contact"/>
+    </sensor>
+
+     <!-- Define actuators -->
+    <actuator>
+        <motor joint="joint_1" name="actuator_1" gear="200"/> <!-- Adjust the gear ratio as needed -->
+        <motor joint="joint_2" name="actuator_2" gear="200"/>
+        <motor joint="joint_3" name="actuator_3" gear="200"/>
+        <motor joint="joint_4" name="actuator_4" gear="200"/>
+        <motor joint="joint_5" name="actuator_5" gear="200"/>
+        <motor joint="joint_6" name="actuator_6" gear="200"/>
+        <!--motor joint="joint_cylinder" gear="200" name="cylinder_actuator"/>
+        <motor joint="joint_piston" gear="200" name="piston_actuator"/-->
+        <!-- Add actuators for the piston_link and cylinder_link joints if needed -->
+    </actuator>
+   
+</mujoco>
+    
+    
+    
+  
